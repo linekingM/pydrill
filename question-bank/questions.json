@@ -7,19 +7,23 @@
     "options": [
       {
         "key": "A",
-        "text": "Helxlxo"
+        "text": "Helxlxo",
+        "hint": "e 被跳过；l 是换成 x，不是在后面加 x"
       },
       {
         "key": "B",
-        "text": "Hxxo"
+        "text": "Hxxo",
+        "hint": "跳过 e，两个 l 都换成 x"
       },
       {
         "key": "C",
-        "text": "Hxlo"
+        "text": "Hxlo",
+        "hint": "两个 l 都会换成 x，不是只换一个"
       },
       {
         "key": "D",
-        "text": "Hexxo"
+        "text": "Hexxo",
+        "hint": "遇到 e 会 continue，e 不会留下"
       }
     ],
     "answer": "B",
@@ -34,19 +38,23 @@
     "options": [
       {
         "key": "A",
-        "text": "(10, 20, [35, 40])"
+        "text": "(10, 20, [35, 40])",
+        "hint": "改的是里面的列表，元组引用没变"
       },
       {
         "key": "B",
-        "text": "代码会报错 TypeError"
+        "text": "代码会报错 TypeError",
+        "hint": "嵌套列表仍可改，不会 TypeError"
       },
       {
         "key": "C",
-        "text": "(10, 20, [30, 40])"
+        "text": "(10, 20, [30, 40])",
+        "hint": "列表第 0 项已经改成了 35"
       },
       {
         "key": "D",
-        "text": "代码会报错 SyntaxError"
+        "text": "代码会报错 SyntaxError",
+        "hint": "这是合法赋值，不会 SyntaxError"
       }
     ],
     "answer": "A",
@@ -61,19 +69,23 @@
     "options": [
       {
         "key": "A",
-        "text": "[1] [2]"
+        "text": "[1] [2]",
+        "hint": "默认列表只建一次，不是每次新建"
       },
       {
         "key": "B",
-        "text": "[1] [1, 2]"
+        "text": "[1] [1, 2]",
+        "hint": "两次调用共享同一列表，list1 也会变"
       },
       {
         "key": "C",
-        "text": "[1, 2] [1, 2]"
+        "text": "[1, 2] [1, 2]",
+        "hint": "默认列表只建一次，两次都往里加"
       },
       {
         "key": "D",
-        "text": "代码会因为默认参数错误而报错"
+        "text": "代码会因为默认参数错误而报错",
+        "hint": "这样写合法，只是共享同一个列表"
       }
     ],
     "answer": "C",
@@ -88,19 +100,23 @@
     "options": [
       {
         "key": "A",
-        "text": "pyth!"
+        "text": "pyth!",
+        "hint": "break 后 else 不执行，也没有 h"
       },
       {
         "key": "B",
-        "text": "pyth"
+        "text": "pyth",
+        "hint": "遇到 h 就 break，h 本身不拼入"
       },
       {
         "key": "C",
-        "text": "pyt!"
+        "text": "pyt!",
+        "hint": "被 break 打断后，感叹号不会加上"
       },
       {
         "key": "D",
-        "text": "pyt"
+        "text": "pyt",
+        "hint": "遇到 h 就 break，else 不会执行"
       }
     ],
     "answer": "D",
@@ -115,19 +131,23 @@
     "options": [
       {
         "key": "A",
-        "text": "(1, 2) (1, 2, 3, 4)"
+        "text": "(1, 2) (1, 2, 3, 4)",
+        "hint": "+= 生成新元组，ref 仍指向旧的"
       },
       {
         "key": "B",
-        "text": "(1, 2, 3, 4) (1, 2, 3, 4)"
+        "text": "(1, 2, 3, 4) (1, 2, 3, 4)",
+        "hint": "ref 还指着原来的二元组"
       },
       {
         "key": "C",
-        "text": "(1, 2) (1, 2)"
+        "text": "(1, 2) (1, 2)",
+        "hint": "nums 已经绑定成新的四元组"
       },
       {
         "key": "D",
-        "text": "报错：TypeError"
+        "text": "报错：TypeError",
+        "hint": "元组可以 +=，不会报 TypeError"
       }
     ],
     "answer": "A",
@@ -142,19 +162,23 @@
     "options": [
       {
         "key": "A",
-        "text": "20 6"
+        "text": "20 6",
+        "hint": "默认值在 def 时已固定为 5"
       },
       {
         "key": "B",
-        "text": "20 10"
+        "text": "20 10",
+        "hint": "默认值是定义时的 5，第二次用的是 3"
       },
       {
         "key": "C",
-        "text": "10 10"
+        "text": "10 10",
+        "hint": "第二次传入了 3，2×3 应该是 6"
       },
       {
         "key": "D",
-        "text": "10 6"
+        "text": "10 6",
+        "hint": "默认 factor 在定义时就是 5"
       }
     ],
     "answer": "D",
@@ -169,19 +193,23 @@
     "options": [
       {
         "key": "A",
-        "text": "[5, 4, 3, 2]"
+        "text": "[5, 4, 3, 2]",
+        "hint": "结束下标 1 不含，没有元素 2"
       },
       {
         "key": "B",
-        "text": "[5, 4, 3]"
+        "text": "[5, 4, 3]",
+        "hint": "从下标 4 取到 1 之前，不含 1"
       },
       {
         "key": "C",
-        "text": "[4, 3, 2]"
+        "text": "[4, 3, 2]",
+        "hint": "起点是下标 4，会包含 5"
       },
       {
         "key": "D",
-        "text": "[]"
+        "text": "[]",
+        "hint": "步长为负时，前大后小才有值"
       }
     ],
     "answer": "B",
@@ -196,19 +224,23 @@
     "options": [
       {
         "key": "A",
-        "text": "[1, 2] [1, 2]"
+        "text": "[1, 2] [1, 2]",
+        "hint": "b 和 a 是同一列表，append 会改到 a"
       },
       {
         "key": "B",
-        "text": "[1, 2, 3] [1, 2, 3]"
+        "text": "[1, 2, 3] [1, 2, 3]",
+        "hint": "c 是切片副本，不会跟着变长"
       },
       {
         "key": "C",
-        "text": "[1, 2, 3] [1, 2]"
+        "text": "[1, 2, 3] [1, 2]",
+        "hint": "b 与 a 同引用，c 是切片副本"
       },
       {
         "key": "D",
-        "text": "[1, 2] [1, 2, 3]"
+        "text": "[1, 2] [1, 2, 3]",
+        "hint": "改的是原列表，副本 c 不会变"
       }
     ],
     "answer": "C",
@@ -223,19 +255,23 @@
     "options": [
       {
         "key": "A",
-        "text": "3 cherry"
+        "text": "3 cherry",
+        "hint": "1、True 和 1.0 会被当成同一个键"
       },
       {
         "key": "B",
-        "text": "3 apple"
+        "text": "3 apple",
+        "hint": "只剩 1 个键，值也被覆盖成 cherry"
       },
       {
         "key": "C",
-        "text": "1 apple"
+        "text": "1 apple",
+        "hint": "键只有一个，值已经是 cherry"
       },
       {
         "key": "D",
-        "text": "1 cherry"
+        "text": "1 cherry",
+        "hint": "1、True、1.0 相等，算同一个键"
       }
     ],
     "answer": "D",
@@ -250,19 +286,23 @@
     "options": [
       {
         "key": "A",
-        "text": "18 18 2"
+        "text": "18 18 2",
+        "hint": "setdefault 写入并返回的是 20"
       },
       {
         "key": "B",
-        "text": "18 20 2"
+        "text": "18 20 2",
+        "hint": "get 只读取，setdefault 才会写入"
       },
       {
         "key": "C",
-        "text": "18 20 1"
+        "text": "18 20 1",
+        "hint": "setdefault 会把 age 写进字典"
       },
       {
         "key": "D",
-        "text": "None 20 2"
+        "text": "None 20 2",
+        "hint": "缺键时 get 返回 18，不是 None"
       }
     ],
     "answer": "B",
@@ -277,19 +317,23 @@
     "options": [
       {
         "key": "A",
-        "text": "报错：UnboundLocalError"
+        "text": "报错：UnboundLocalError",
+        "hint": "函数里有赋值，x 被当成局部变量"
       },
       {
         "key": "B",
-        "text": "10"
+        "text": "10",
+        "hint": "print 时局部 x 还没赋值"
       },
       {
         "key": "C",
-        "text": "20"
+        "text": "20",
+        "hint": "还没执行到赋值就已经报错"
       },
       {
         "key": "D",
-        "text": "报错：ValueError"
+        "text": "报错：ValueError",
+        "hint": "抛出的是 UnboundLocalError"
       }
     ],
     "answer": "A",
@@ -304,19 +348,23 @@
     "options": [
       {
         "key": "A",
-        "text": "[0, 1, 2]"
+        "text": "[0, 1, 2]",
+        "hint": "lambda 读的是循环结束后的 i"
       },
       {
         "key": "B",
-        "text": "[0, 0, 0]"
+        "text": "[0, 0, 0]",
+        "hint": "循环结束时 i 是 2，不是 0"
       },
       {
         "key": "C",
-        "text": "[3, 3, 3]"
+        "text": "[3, 3, 3]",
+        "hint": "range(3) 结束时 i 停在 2"
       },
       {
         "key": "D",
-        "text": "[2, 2, 2]"
+        "text": "[2, 2, 2]",
+        "hint": "闭包晚绑定，调用时 i 已是 2"
       }
     ],
     "answer": "D",
@@ -331,19 +379,23 @@
     "options": [
       {
         "key": "A",
-        "text": "['sword'] []"
+        "text": "['sword'] []",
+        "hint": "items 是大家共享的类属性列表"
       },
       {
         "key": "B",
-        "text": "[] ['sword']"
+        "text": "[] ['sword']",
+        "hint": "改的是共享列表，p1 也能看见"
       },
       {
         "key": "C",
-        "text": "['sword'] ['sword']"
+        "text": "['sword'] ['sword']",
+        "hint": "类属性列表被两个实例共享"
       },
       {
         "key": "D",
-        "text": "报错：AttributeError"
+        "text": "报错：AttributeError",
+        "hint": "类上就有 items，不会报错"
       }
     ],
     "answer": "C",
@@ -358,19 +410,23 @@
     "options": [
       {
         "key": "A",
-        "text": "hello A"
+        "text": "hello A",
+        "hint": "self 是 B，会调用 B 重写的方法"
       },
       {
         "key": "B",
-        "text": "hello B"
+        "text": "hello B",
+        "hint": "self.get_name 走的是子类重写版"
       },
       {
         "key": "C",
-        "text": "hello None"
+        "text": "hello None",
+        "hint": "get_name 返回的是字符串 B"
       },
       {
         "key": "D",
-        "text": "报错：AttributeError"
+        "text": "报错：AttributeError",
+        "hint": "B 继承了 hello，调用不会报错"
       }
     ],
     "answer": "B",
@@ -385,19 +441,23 @@
     "options": [
       {
         "key": "A",
-        "text": "try-else-finally"
+        "text": "try-else-finally",
+        "hint": "没异常：try、else、finally 都执行"
       },
       {
         "key": "B",
-        "text": "try-finally"
+        "text": "try-finally",
+        "hint": "没有异常时，else 也会执行"
       },
       {
         "key": "C",
-        "text": "try-except-finally"
+        "text": "try-except-finally",
+        "hint": "没有 ValueError，except 不会走"
       },
       {
         "key": "D",
-        "text": "try-else"
+        "text": "try-else",
+        "hint": "finally 无论有没有异常都会执行"
       }
     ],
     "answer": "A",
@@ -412,19 +472,23 @@
     "options": [
       {
         "key": "A",
-        "text": "A"
+        "text": "A",
+        "hint": "finally 里的 return 会盖掉 A"
       },
       {
         "key": "B",
-        "text": "B"
+        "text": "B",
+        "hint": "没有异常，except 分支不会走"
       },
       {
         "key": "C",
-        "text": "C"
+        "text": "C",
+        "hint": "finally 返回 C，盖过 try 的 A"
       },
       {
         "key": "D",
-        "text": "报错：SyntaxError"
+        "text": "报错：SyntaxError",
+        "hint": "finally 里 return 不是语法错误"
       }
     ],
     "answer": "C",
