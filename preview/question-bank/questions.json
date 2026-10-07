@@ -1,0 +1,498 @@
+[
+  {
+    "id": "q001",
+    "topic": "字符串/循环",
+    "stem": "以下代码输出什么？",
+    "code": "w = \"Hello\"\nnw = \"\"\nfor c in w:\n    if c == \"e\":\n        continue\n    if c == \"l\":\n        nw = nw + \"x\"\n    else:\n        nw = nw + c\nprint(nw)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Helxlxo",
+        "hint": "e 被跳过；l 是换成 x，不是在后面加 x"
+      },
+      {
+        "key": "B",
+        "text": "Hxxo",
+        "hint": "跳过 e，两个 l 都换成 x"
+      },
+      {
+        "key": "C",
+        "text": "Hxlo",
+        "hint": "两个 l 都会换成 x，不是只换一个"
+      },
+      {
+        "key": "D",
+        "text": "Hexxo",
+        "hint": "遇到 e 会 continue，e 不会留下"
+      }
+    ],
+    "answer": "B",
+    "explanation": "答案是 B，输出 `Hxxo`。循环逐个取出字符：`H` 原样拼进 `nw`；遇到 `e` 时执行 `continue`，本轮剩下的代码全部跳过，所以 `e` 不会被加进去；后面两个 `l` 都满足 `c == \"l\"`，各拼一个 `x`；最后的 `o` 原样拼入，得到 `Hxxo`。易错点：`continue` 只是跳过“这一轮”，循环还会继续；而且每个 `l` 都会被替换，不是只换第一个。",
+    "animationId": null
+  },
+  {
+    "id": "q002",
+    "topic": "元组/引用",
+    "stem": "下面的 Python 代码片段，执行后会输出什么？",
+    "code": "my_tuple = (10, 20, [30, 40])\nmy_tuple[2][0] = 35\nprint(my_tuple)",
+    "options": [
+      {
+        "key": "A",
+        "text": "(10, 20, [35, 40])",
+        "hint": "改的是里面的列表，元组引用没变"
+      },
+      {
+        "key": "B",
+        "text": "代码会报错 TypeError",
+        "hint": "嵌套列表仍可改，不会 TypeError"
+      },
+      {
+        "key": "C",
+        "text": "(10, 20, [30, 40])",
+        "hint": "列表第 0 项已经改成了 35"
+      },
+      {
+        "key": "D",
+        "text": "代码会报错 SyntaxError",
+        "hint": "这是合法赋值，不会 SyntaxError"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，输出 `(10, 20, [35, 40])`。元组是不可变容器，指其元素的引用地址不可变；但第 3 个元素是可变列表，`my_tuple[2][0] = 35` 修改的是列表内部的值，并没有改变元组持有的列表引用。易错点：容易误以为元组内所有嵌套元素都无法修改而误选 TypeError。",
+    "animationId": null
+  },
+  {
+    "id": "q003",
+    "topic": "函数/默认参数",
+    "stem": "以下代码的输出是什么？",
+    "code": "def add_item(item, my_list=[]):\n    my_list.append(item)\n    return my_list\n\nlist1 = add_item(1)\nlist2 = add_item(2)\nprint(list1, list2)",
+    "options": [
+      {
+        "key": "A",
+        "text": "[1] [2]",
+        "hint": "默认列表只建一次，不是每次新建"
+      },
+      {
+        "key": "B",
+        "text": "[1] [1, 2]",
+        "hint": "两次调用共享同一列表，list1 也会变"
+      },
+      {
+        "key": "C",
+        "text": "[1, 2] [1, 2]",
+        "hint": "默认列表只建一次，两次都往里加"
+      },
+      {
+        "key": "D",
+        "text": "代码会因为默认参数错误而报错",
+        "hint": "这样写合法，只是共享同一个列表"
+      }
+    ],
+    "answer": "C",
+    "explanation": "答案是 C，输出 `[1, 2] [1, 2]`。Python 函数默认参数在 `def` 定义时只求值一次，未传参时会一直共享同一个默认列表。第 1 次调用追加 1，第 2 次追加 2，`list1` 与 `list2` 最终指向同一个列表 `[1, 2]`。易错点：容易误以为每次调用都会新建一个空列表。",
+    "animationId": null
+  },
+  {
+    "id": "q004",
+    "topic": "字符串/循环",
+    "stem": "执行这段代码后，控制台打印的结果是？",
+    "code": "chars = \"python\"\nresult = \"\"\nfor c in chars:\n    if c == \"h\":\n        break\n    result += c\nelse:\n    result += \"!\"\nprint(result)",
+    "options": [
+      {
+        "key": "A",
+        "text": "pyth!",
+        "hint": "break 后 else 不执行，也没有 h"
+      },
+      {
+        "key": "B",
+        "text": "pyth",
+        "hint": "遇到 h 就 break，h 本身不拼入"
+      },
+      {
+        "key": "C",
+        "text": "pyt!",
+        "hint": "被 break 打断后，感叹号不会加上"
+      },
+      {
+        "key": "D",
+        "text": "pyt",
+        "hint": "遇到 h 就 break，else 不会执行"
+      }
+    ],
+    "answer": "D",
+    "explanation": "答案是 D，输出 `pyt`。遍历字符串 `\"python\"` 时，前三个字符依次拼入 `result`；遇到 `'h'` 时触发 `break` 跳出循环。在 Python 中，`for...else` 的 `else` 块只有在循环正常结束、未被 `break` 打断时才会执行。易错点：容易误以为 `else` 像 `finally` 一样总会执行。",
+    "animationId": null
+  },
+  {
+    "id": "q005",
+    "topic": "元组/引用",
+    "stem": "执行以下代码，最后一行打印的是？",
+    "code": "nums = (1, 2)\nref = nums\nnums += (3, 4)\nprint(ref, nums)",
+    "options": [
+      {
+        "key": "A",
+        "text": "(1, 2) (1, 2, 3, 4)",
+        "hint": "+= 生成新元组，ref 仍指向旧的"
+      },
+      {
+        "key": "B",
+        "text": "(1, 2, 3, 4) (1, 2, 3, 4)",
+        "hint": "ref 还指着原来的二元组"
+      },
+      {
+        "key": "C",
+        "text": "(1, 2) (1, 2)",
+        "hint": "nums 已经绑定成新的四元组"
+      },
+      {
+        "key": "D",
+        "text": "报错：TypeError",
+        "hint": "元组可以 +=，不会报 TypeError"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，输出 `(1, 2) (1, 2, 3, 4)`。变量 `ref` 和 `nums` 最初指向同一个元组；由于元组不可变，`nums += (3, 4)` 会拼接生成新元组并重新绑定给 `nums`，原元组不受影响，`ref` 仍指向 `(1, 2)`。易错点：容易误以为元组不可变会导致 `+=` 报错，或像列表那样影响别名。",
+    "animationId": null
+  },
+  {
+    "id": "q006",
+    "topic": "函数/默认参数",
+    "stem": "以下代码执行后，print 输出的内容是？",
+    "code": "n = 5\n\ndef calc(x, factor=n):\n    return x * factor\n\nn = 10\nprint(calc(2), calc(2, 3))",
+    "options": [
+      {
+        "key": "A",
+        "text": "20 6",
+        "hint": "默认值在 def 时已固定为 5"
+      },
+      {
+        "key": "B",
+        "text": "20 10",
+        "hint": "默认值是定义时的 5，第二次用的是 3"
+      },
+      {
+        "key": "C",
+        "text": "10 10",
+        "hint": "第二次传入了 3，2×3 应该是 6"
+      },
+      {
+        "key": "D",
+        "text": "10 6",
+        "hint": "默认 factor 在定义时就是 5"
+      }
+    ],
+    "answer": "D",
+    "explanation": "答案是 D，输出 `10 6`。函数默认参数在 `def` 定义时就已求值固定（`factor=5`），后续修改变量 `n = 10` 不会影响默认参数。调用 `calc(2)` 使用默认值计算得 10；调用 `calc(2, 3)` 传入实参 3 覆盖默认值计算得 6。易错点：容易误以为默认参数在调用时才动态查找变量。",
+    "animationId": null
+  },
+  {
+    "id": "q007",
+    "topic": "列表/切片",
+    "stem": "执行以下代码，终端输出的结果是？",
+    "code": "nums = [1, 2, 3, 4, 5]\nres = nums[4:1:-1]\nprint(res)",
+    "options": [
+      {
+        "key": "A",
+        "text": "[5, 4, 3, 2]",
+        "hint": "结束下标 1 不含，没有元素 2"
+      },
+      {
+        "key": "B",
+        "text": "[5, 4, 3]",
+        "hint": "从下标 4 取到 1 之前，不含 1"
+      },
+      {
+        "key": "C",
+        "text": "[4, 3, 2]",
+        "hint": "起点是下标 4，会包含 5"
+      },
+      {
+        "key": "D",
+        "text": "[]",
+        "hint": "步长为负时，前大后小才有值"
+      }
+    ],
+    "answer": "B",
+    "explanation": "答案是 B，输出 `[5, 4, 3]`。切片 `nums[4:1:-1]` 中步长为 -1 表示反向提取，从索引 4 开始，到索引 1 结束。根据切片“含头不含尾”的规则，不包含索引 1 处的元素 2，因此依次取出索引 4、3、2 对应的 `[5, 4, 3]`。易错点：容易误以为结束索引包含在内，或误以为前大后小返回空列表。",
+    "animationId": null
+  },
+  {
+    "id": "q008",
+    "topic": "列表/切片",
+    "stem": "执行以下代码后，最后一行打印的结果是？",
+    "code": "a = [1, 2]\nb = a\nc = a[:]\nb.append(3)\nprint(a, c)",
+    "options": [
+      {
+        "key": "A",
+        "text": "[1, 2] [1, 2]",
+        "hint": "b 和 a 是同一列表，append 会改到 a"
+      },
+      {
+        "key": "B",
+        "text": "[1, 2, 3] [1, 2, 3]",
+        "hint": "c 是切片副本，不会跟着变长"
+      },
+      {
+        "key": "C",
+        "text": "[1, 2, 3] [1, 2]",
+        "hint": "b 与 a 同引用，c 是切片副本"
+      },
+      {
+        "key": "D",
+        "text": "[1, 2] [1, 2, 3]",
+        "hint": "改的是原列表，副本 c 不会变"
+      }
+    ],
+    "answer": "C",
+    "explanation": "答案是 C，输出 `[1, 2, 3] [1, 2]`。`b = a` 只是引用赋值，两者指向同一个列表；而 `c = a[:]` 通过切片创建了一个新浅拷贝。调用 `b.append(3)` 修改原列表，`a` 随之变为 `[1, 2, 3]`，而拷贝 `c` 不受影响仍为 `[1, 2]`。易错点：容易混淆引用赋值与切片浅拷贝的区别。",
+    "animationId": null
+  },
+  {
+    "id": "q009",
+    "topic": "字典",
+    "stem": "下面的 Python 代码片段，执行后会输出什么？",
+    "code": "d = {}\nd[1] = \"apple\"\nd[True] = \"banana\"\nd[1.0] = \"cherry\"\nprint(len(d), d[1])",
+    "options": [
+      {
+        "key": "A",
+        "text": "3 cherry",
+        "hint": "1、True 和 1.0 会被当成同一个键"
+      },
+      {
+        "key": "B",
+        "text": "3 apple",
+        "hint": "只剩 1 个键，值也被覆盖成 cherry"
+      },
+      {
+        "key": "C",
+        "text": "1 apple",
+        "hint": "键只有一个，值已经是 cherry"
+      },
+      {
+        "key": "D",
+        "text": "1 cherry",
+        "hint": "1、True、1.0 相等，算同一个键"
+      }
+    ],
+    "answer": "D",
+    "explanation": "答案是 D，输出 `1 cherry`。在 Python 里 `1 == True == 1.0`，而且三者的哈希值相同，字典会把它们当成同一个键。所以第二、三次赋值都只是在覆盖同一个键的值：键仍然保留最早放进去的 `1`，值最后变成 `\"cherry\"`，字典长度是 1。易错点：字典判断“是不是同一个键”看的是哈希值和 `==`，不是看类型是否相同。",
+    "animationId": null
+  },
+  {
+    "id": "q010",
+    "topic": "字典",
+    "stem": "运行以下代码片段，最终输出的结果是？",
+    "code": "info = {\"name\": \"Alice\"}\nv1 = info.get(\"age\", 18)\nv2 = info.setdefault(\"age\", 20)\nprint(v1, v2, len(info))",
+    "options": [
+      {
+        "key": "A",
+        "text": "18 18 2",
+        "hint": "setdefault 写入并返回的是 20"
+      },
+      {
+        "key": "B",
+        "text": "18 20 2",
+        "hint": "get 只读取，setdefault 才会写入"
+      },
+      {
+        "key": "C",
+        "text": "18 20 1",
+        "hint": "setdefault 会把 age 写进字典"
+      },
+      {
+        "key": "D",
+        "text": "None 20 2",
+        "hint": "缺键时 get 返回 18，不是 None"
+      }
+    ],
+    "answer": "B",
+    "explanation": "答案是 B，输出 `18 20 2`。`dict.get(\"age\", 18)` 仅返回默认值 18，不会修改字典；而 `dict.setdefault(\"age\", 20)` 当键不存在时，除了返回默认值 20，还会将键值对写入字典，使字典长度变为 2。易错点：容易误以为 `get` 也会写入默认值，或混淆两者对字典的修改机制。",
+    "animationId": null
+  },
+  {
+    "id": "q011",
+    "topic": "作用域/变量",
+    "stem": "执行以下代码，程序运行的结果是？",
+    "code": "x = 10\n\ndef test():\n    print(x)\n    x = 20\n\ntest()",
+    "options": [
+      {
+        "key": "A",
+        "text": "报错：UnboundLocalError",
+        "hint": "函数里有赋值，x 被当成局部变量"
+      },
+      {
+        "key": "B",
+        "text": "10",
+        "hint": "print 时局部 x 还没赋值"
+      },
+      {
+        "key": "C",
+        "text": "20",
+        "hint": "还没执行到赋值就已经报错"
+      },
+      {
+        "key": "D",
+        "text": "报错：ValueError",
+        "hint": "抛出的是 UnboundLocalError"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，程序抛出 `UnboundLocalError`。函数体里有赋值语句 `x = 20`，Python 在编译这个函数时就把 `x` 认定为局部变量（不管赋值写在前还是写在后）。执行到 `print(x)` 时，这个局部变量还没有被赋值，于是报错，并不会退回去读取全局的 10。易错点：变量是不是局部的，是由函数里有没有赋值静态决定的；想改全局变量要先写 `global x`。",
+    "animationId": null
+  },
+  {
+    "id": "q012",
+    "topic": "作用域/变量",
+    "stem": "以下代码执行后，print 输出的内容是？",
+    "code": "funcs = [lambda: i for i in range(3)]\nresults = [f() for f in funcs]\nprint(results)",
+    "options": [
+      {
+        "key": "A",
+        "text": "[0, 1, 2]",
+        "hint": "lambda 读的是循环结束后的 i"
+      },
+      {
+        "key": "B",
+        "text": "[0, 0, 0]",
+        "hint": "循环结束时 i 是 2，不是 0"
+      },
+      {
+        "key": "C",
+        "text": "[3, 3, 3]",
+        "hint": "range(3) 结束时 i 停在 2"
+      },
+      {
+        "key": "D",
+        "text": "[2, 2, 2]",
+        "hint": "闭包晚绑定，调用时 i 已是 2"
+      }
+    ],
+    "answer": "D",
+    "explanation": "答案是 D，输出 `[2, 2, 2]`。这是闭包晚绑定现象。列表推导式中的 lambda 没有在定义时立即捕获 `i` 的当前值，而是保存了变量引用。推导式循环结束后 `i` 的最终值为 2；随后依次调用函数时，读取到的都是当前值 2。易错点：容易误以为闭包会在循环定义时立即固定当时的值而误选 A。",
+    "animationId": null
+  },
+  {
+    "id": "q013",
+    "topic": "类/对象",
+    "stem": "执行以下面向对象代码，控制台打印的结果是？",
+    "code": "class Player:\n    items = []\n\n    def __init__(self, name):\n        self.name = name\n\np1 = Player(\"A\")\np2 = Player(\"B\")\np1.items.append(\"sword\")\nprint(p1.items, p2.items)",
+    "options": [
+      {
+        "key": "A",
+        "text": "['sword'] []",
+        "hint": "items 是大家共享的类属性列表"
+      },
+      {
+        "key": "B",
+        "text": "[] ['sword']",
+        "hint": "改的是共享列表，p1 也能看见"
+      },
+      {
+        "key": "C",
+        "text": "['sword'] ['sword']",
+        "hint": "类属性列表被两个实例共享"
+      },
+      {
+        "key": "D",
+        "text": "报错：AttributeError",
+        "hint": "类上就有 items，不会报错"
+      }
+    ],
+    "answer": "C",
+    "explanation": "答案是 C，输出 `['sword'] ['sword']`。类定义中的 `items = []` 是类属性，被所有实例共享。`p1.items.append(\"sword\")` 是就地修改共享的类属性列表，并未给 `p1` 创建独立实例属性，因此 `p2.items` 也能看到修改结果。易错点：容易将可变的类属性误认为是各实例独立拥有的属性而误选 A。",
+    "animationId": null
+  },
+  {
+    "id": "q014",
+    "topic": "类/对象",
+    "stem": "执行以下面向对象代码，最后一行打印的是？",
+    "code": "class A:\n    def get_name(self):\n        return \"A\"\n    def hello(self):\n        return \"hello \" + self.get_name()\n\nclass B(A):\n    def get_name(self):\n        return \"B\"\n\nobj = B()\nprint(obj.hello())",
+    "options": [
+      {
+        "key": "A",
+        "text": "hello A",
+        "hint": "self 是 B，会调用 B 重写的方法"
+      },
+      {
+        "key": "B",
+        "text": "hello B",
+        "hint": "self.get_name 走的是子类重写版"
+      },
+      {
+        "key": "C",
+        "text": "hello None",
+        "hint": "get_name 返回的是字符串 B"
+      },
+      {
+        "key": "D",
+        "text": "报错：AttributeError",
+        "hint": "B 继承了 hello，调用不会报错"
+      }
+    ],
+    "answer": "B",
+    "explanation": "答案是 B，输出 `hello B`。子类 `B` 继承父类 `A` 并重写了 `get_name`。调用继承来的 `obj.hello()` 时，方法内的 `self` 指向子类实例 `obj`；因此 `self.get_name()` 触发多态，调用子类重写的方法返回 `\"B\"`。易错点：容易误以为父类方法内只会调用父类自身定义的方法而误选 A。",
+    "animationId": null
+  },
+  {
+    "id": "q015",
+    "topic": "异常处理",
+    "stem": "执行下面的异常处理代码，最终输出的结果是？",
+    "code": "steps = []\ntry:\n    steps.append(\"try\")\nexcept ValueError:\n    steps.append(\"except\")\nelse:\n    steps.append(\"else\")\nfinally:\n    steps.append(\"finally\")\nprint(\"-\".join(steps))",
+    "options": [
+      {
+        "key": "A",
+        "text": "try-else-finally",
+        "hint": "没异常：try、else、finally 都执行"
+      },
+      {
+        "key": "B",
+        "text": "try-finally",
+        "hint": "没有异常时，else 也会执行"
+      },
+      {
+        "key": "C",
+        "text": "try-except-finally",
+        "hint": "没有 ValueError，except 不会走"
+      },
+      {
+        "key": "D",
+        "text": "try-else",
+        "hint": "finally 无论有没有异常都会执行"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，输出 `try-else-finally`。在异常处理结构中：`try` 块正常执行未发生异常，跳过 `except`；`else` 块只有在 `try` 块没有发生异常时才会执行；而 `finally` 块无论是否有异常都必定执行。因此三者依次执行。易错点：容易忽略 `else` 块，误以为没有异常时只执行 `try` 和 `finally`。",
+    "animationId": null
+  },
+  {
+    "id": "q016",
+    "topic": "异常处理",
+    "stem": "执行以下包含 finally 的函数代码，控制台输出的是？",
+    "code": "def test():\n    try:\n        return \"A\"\n    except Exception:\n        return \"B\"\n    finally:\n        return \"C\"\n\nprint(test())",
+    "options": [
+      {
+        "key": "A",
+        "text": "A",
+        "hint": "finally 里的 return 会盖掉 A"
+      },
+      {
+        "key": "B",
+        "text": "B",
+        "hint": "没有异常，except 分支不会走"
+      },
+      {
+        "key": "C",
+        "text": "C",
+        "hint": "finally 返回 C，盖过 try 的 A"
+      },
+      {
+        "key": "D",
+        "text": "报错：SyntaxError",
+        "hint": "finally 里 return 不是语法错误"
+      }
+    ],
+    "answer": "C",
+    "explanation": "答案是 C，输出 `C`。`try` 里的 `return \"A\"` 会先把返回值暂存起来，但在函数真正退出之前，`finally` 一定会执行；`finally` 里又写了 `return \"C\"`，它会覆盖掉之前暂存的 \"A\"，所以最终返回 \"C\"。这里没有发生异常，`except` 分支根本不会执行。易错点：`try` 里的 `return` 不会跳过 `finally`。实际写代码时不要在 `finally` 里 `return`（会吞掉返回值和异常，Python 3.14 起还会给出 SyntaxWarning）。",
+    "animationId": null
+  }
+]
