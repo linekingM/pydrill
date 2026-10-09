@@ -494,5 +494,253 @@
     "answer": "C",
     "explanation": "答案是 C，输出 `C`。`try` 里的 `return \"A\"` 会先把返回值暂存起来，但在函数真正退出之前，`finally` 一定会执行；`finally` 里又写了 `return \"C\"`，它会覆盖掉之前暂存的 \"A\"，所以最终返回 \"C\"。这里没有发生异常，`except` 分支根本不会执行。易错点：`try` 里的 `return` 不会跳过 `finally`。实际写代码时不要在 `finally` 里 `return`（会吞掉返回值和异常，Python 3.14 起还会给出 SyntaxWarning）。",
     "animationId": null
+  },
+  {
+    "id": "q017",
+    "topic": "字符串/循环",
+    "stem": "运行这段代码会发生什么？",
+    "code": "s = \"hello\"\ns[0] = \"H\"\nprint(s)",
+    "options": [
+      {
+        "key": "A",
+        "text": "Hello",
+        "hint": "字符串不可变，不能按下标赋值"
+      },
+      {
+        "key": "B",
+        "text": "hello",
+        "hint": "赋值那行就报错，到不了print"
+      },
+      {
+        "key": "C",
+        "text": "报错：TypeError",
+        "hint": "字符串不支持按下标赋值"
+      },
+      {
+        "key": "D",
+        "text": "报错：IndexError",
+        "hint": "下标0存在，报的是TypeError"
+      }
+    ],
+    "answer": "C",
+    "explanation": "答案是 C，程序抛出 `TypeError`。Python 的字符串是不可变类型，不支持通过下标赋值来修改其中的字符。执行 `s[0] = \"H\"` 时会立刻抛出 `TypeError`，程序不会执行到 `print`。如果想得到 `\"Hello\"`，需要用 `s = \"H\" + s[1:]` 拼接出一个新字符串。易错点：容易误以为字符串和列表一样可以按下标修改。",
+    "animationId": null
+  },
+  {
+    "id": "q018",
+    "topic": "字符串/循环",
+    "stem": "以下代码执行后，print 输出的内容是？",
+    "code": "s = \"hello\"\ns.replace(\"l\", \"L\")\nprint(s)",
+    "options": [
+      {
+        "key": "A",
+        "text": "hello",
+        "hint": "replace返回新串，原串不变"
+      },
+      {
+        "key": "B",
+        "text": "heLLo",
+        "hint": "没接住返回值，s还是原来的"
+      },
+      {
+        "key": "C",
+        "text": "heLlo",
+        "hint": "replace默认替换全部，但没接住"
+      },
+      {
+        "key": "D",
+        "text": "报错：TypeError",
+        "hint": "replace用法合法，不会报错"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，输出 `hello`。`str.replace()` 不会修改原字符串，而是返回一个新的字符串。这里调用了 `s.replace(\"l\", \"L\")` 却没有把返回值赋回给 `s`，所以 `s` 仍然是原来的 `\"hello\"`。正确写法是 `s = s.replace(\"l\", \"L\")`。易错点：容易误以为 `replace` 会就地修改字符串，忘记字符串是不可变的。",
+    "animationId": null
+  },
+  {
+    "id": "q019",
+    "topic": "字符串/循环",
+    "stem": "执行以下嵌套循环代码，最后一行打印的是？",
+    "code": "for i in range(3):\n    for j in range(3):\n        if j == 1:\n            break\nprint(i, j)",
+    "options": [
+      {
+        "key": "A",
+        "text": "0 1",
+        "hint": "外层循环会继续，i最终是2"
+      },
+      {
+        "key": "B",
+        "text": "2 0",
+        "hint": "break时j已经是1，不是0"
+      },
+      {
+        "key": "C",
+        "text": "0 0",
+        "hint": "外层循环不会被break打断"
+      },
+      {
+        "key": "D",
+        "text": "2 1",
+        "hint": "break只跳出内层，外层走完"
+      }
+    ],
+    "answer": "D",
+    "explanation": "答案是 D，输出 `2 1`。内层循环每次在 `j == 1` 时执行 `break`，但 `break` 只会跳出内层循环，外层循环继续正常执行。外层循环走完三轮后 `i` 停在 2；每一轮内层循环都在 `j == 1` 时跳出，`j` 停在 1。循环结束后变量 `i` 和 `j` 仍然存在。易错点：容易误以为 `break` 会跳出所有层循环。",
+    "animationId": null
+  },
+  {
+    "id": "q041",
+    "topic": "字符串/循环",
+    "stem": "运行以下代码，控制台打印的结果是？",
+    "code": "text = \"Python\"\nprint(text[1:4])",
+    "options": [
+      {
+        "key": "A",
+        "text": "yth",
+        "hint": "切片左闭右开，包含下标1到3"
+      },
+      {
+        "key": "B",
+        "text": "ytho",
+        "hint": "切片不包含下标4，没有字母o"
+      },
+      {
+        "key": "C",
+        "text": "pyth",
+        "hint": "下标从0开始，1对应字母y"
+      },
+      {
+        "key": "D",
+        "text": "Pyt",
+        "hint": "下标1是y不是P，且右端开区间"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，输出 `yth`。字符串切片 `[start:stop]` 遵循“左闭右开”原则，即包含起始下标 `start`，但不包含结束下标 `stop`。在代码中，`text = \"Python\"`，下标 0 对应 `'P'`、1 对应 `'y'`、2 对应 `'t'`、3 对应 `'h'`、4 对应 `'o'`。切片 `text[1:4]` 取出下标 1、2、3 对应的字符，拼接后得到 `\"yth\"`。易错点：容易误以为结束下标 4 对应的字符 `'o'` 也会被包含在内。",
+    "animationId": null
+  },
+  {
+    "id": "q042",
+    "topic": "字符串/循环",
+    "stem": "执行下列代码后，print 输出的内容是？",
+    "code": "result = \"\"\nfor i in range(1, 7, 2):\n    result += str(i)\nprint(result)",
+    "options": [
+      {
+        "key": "A",
+        "text": "1357",
+        "hint": "range左闭右开，不会取到7"
+      },
+      {
+        "key": "B",
+        "text": "135",
+        "hint": "步长为2且不含7，依次取1、3、5"
+      },
+      {
+        "key": "C",
+        "text": "123456",
+        "hint": "指定了步长2，每次增加2而不是1"
+      },
+      {
+        "key": "D",
+        "text": "13",
+        "hint": "5小于7，循环还会执行一轮"
+      }
+    ],
+    "answer": "B",
+    "explanation": "答案是 B，输出 `135`。`range(start, stop, step)` 生成整数序列，起始值为 `start`，每次递增 `step`，且不包含 `stop`。这里 `range(1, 7, 2)` 生成的数字依次为 1、3、5（下一个数 7 已达到结束边界，不被包含）。循环中每次将数字转为字符串拼接到 `result` 末尾，最终得到 `\"135\"`。易错点：容易误认为 `range` 的结束值会被包含在内，或者忽略了第三个参数步长。",
+    "animationId": null
+  },
+  {
+    "id": "q043",
+    "topic": "字符串/循环",
+    "stem": "下面这段代码的输出结果是？",
+    "code": "text = \"hello\"\nprint(text.find(\"w\"))",
+    "options": [
+      {
+        "key": "A",
+        "text": "False",
+        "hint": "find返回整数下标而非布尔值"
+      },
+      {
+        "key": "B",
+        "text": "报错：ValueError",
+        "hint": "找不到时find返回-1不报错"
+      },
+      {
+        "key": "C",
+        "text": "-1",
+        "hint": "子串不存在时，find返回-1"
+      },
+      {
+        "key": "D",
+        "text": "0",
+        "hint": "0表示在开头找到，不是未找到"
+      }
+    ],
+    "answer": "C",
+    "explanation": "答案是 C，输出 `-1`。在 Python 中，`str.find()` 方法用于在字符串中查找子串首次出现的位置。如果子串存在，返回其第一个字符对应的索引下标；如果子串不存在，则返回 `-1`，而不会抛出异常。在本题中，`\"w\"` 并不在 `\"hello\"` 中，因此返回 `-1`。易错点：容易将 `find()` 与 `index()` 混淆，`index()` 在找不到子串时会抛出 `ValueError`。",
+    "animationId": null
+  },
+  {
+    "id": "q044",
+    "topic": "字符串/循环",
+    "stem": "运行这段代码，终端会显示什么？",
+    "code": "words = [\"cat\", \"dog\", \"bird\"]\nprint(\"-\".join(words))",
+    "options": [
+      {
+        "key": "A",
+        "text": "cat-dog-bird-",
+        "hint": "join只在元素间插入，末尾不加"
+      },
+      {
+        "key": "B",
+        "text": "-cat-dog-bird-",
+        "hint": "两端不会添加连接符"
+      },
+      {
+        "key": "C",
+        "text": "catdogbird",
+        "hint": "连接符-会插入在每个元素之间"
+      },
+      {
+        "key": "D",
+        "text": "cat-dog-bird",
+        "hint": "连接符只插入在相邻元素之间"
+      }
+    ],
+    "answer": "D",
+    "explanation": "答案是 D，输出 `cat-dog-bird`。`str.join(iterable)` 方法通过指定的分隔符将可迭代对象中的元素拼接为一个新字符串。分隔符只会插入在相邻的元素之间，序列的开头和结尾不会添加该分隔符。因此 `\"-\".join([\"cat\", \"dog\", \"bird\"])` 得到的结果是 `\"cat-dog-bird\"`。易错点：初学者常误以为每个元素后面都会跟着一个分隔符，导致误选末尾带短横线的选项。",
+    "animationId": null
+  },
+  {
+    "id": "q045",
+    "topic": "字符串/循环",
+    "stem": "执行以下代码，最终输出的内容是哪一项？",
+    "code": "res = \"\"\nfor i, ch in enumerate(\"abc\", start=1):\n    res += str(i) + ch\nprint(res)",
+    "options": [
+      {
+        "key": "A",
+        "text": "1a2b3c",
+        "hint": "start=1让计数从1开始累加"
+      },
+      {
+        "key": "B",
+        "text": "0a1b2c",
+        "hint": "指定了start=1，序号从1开始"
+      },
+      {
+        "key": "C",
+        "text": "1b2c",
+        "hint": "start改的是序号，不是跳过首字符"
+      },
+      {
+        "key": "D",
+        "text": "123",
+        "hint": "循环拼接了序号与字符两部分"
+      }
+    ],
+    "answer": "A",
+    "explanation": "答案是 A，输出 `1a2b3c`。`enumerate(iterable, start=0)` 用于同时获取可迭代对象的索引和元素，默认起始索引为 0。当传入 `start=1` 时，计数器从 1 开始递增，但遍历仍然从可迭代对象的第一个元素开始。因此三轮循环分别拿到 `(1, 'a')`、`(2, 'b')`、`(3, 'c')`，拼接后输出 `1a2b3c`。易错点：容易误以为默认从 0 开始而忽略 `start=1`，或者误以为 `start=1` 是从第二个元素开始切片。",
+    "animationId": null
   }
 ]
