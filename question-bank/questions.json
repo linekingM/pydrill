@@ -28,7 +28,8 @@
     ],
     "answer": "B",
     "explanation": "答案是 B，输出 `Hxxo`。循环逐个取出字符：`H` 原样拼进 `nw`；遇到 `e` 时执行 `continue`，本轮剩下的代码全部跳过，所以 `e` 不会被加进去；后面两个 `l` 都满足 `c == \"l\"`，各拼一个 `x`；最后的 `o` 原样拼入，得到 `Hxxo`。易错点：`continue` 只是跳过“这一轮”，循环还会继续；而且每个 `l` 都会被替换，不是只换第一个。",
-    "animationId": null
+    "animationId": null,
+    "title": "continue跳过单轮循环"
   },
   {
     "id": "q002",
@@ -59,7 +60,8 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，输出 `(10, 20, [35, 40])`。元组是不可变容器，指其元素的引用地址不可变；但第 3 个元素是可变列表，`my_tuple[2][0] = 35` 修改的是列表内部的值，并没有改变元组持有的列表引用。易错点：容易误以为元组内所有嵌套元素都无法修改而误选 TypeError。",
-    "animationId": null
+    "animationId": null,
+    "title": "修改元组内嵌套列表"
   },
   {
     "id": "q003",
@@ -90,7 +92,8 @@
     ],
     "answer": "C",
     "explanation": "答案是 C，输出 `[1, 2] [1, 2]`。Python 函数默认参数在 `def` 定义时只求值一次，未传参时会一直共享同一个默认列表。第 1 次调用追加 1，第 2 次追加 2，`list1` 与 `list2` 最终指向同一个列表 `[1, 2]`。易错点：容易误以为每次调用都会新建一个空列表。",
-    "animationId": null
+    "animationId": null,
+    "title": "可变默认参数列表共享"
   },
   {
     "id": "q004",
@@ -121,7 +124,8 @@
     ],
     "answer": "D",
     "explanation": "答案是 D，输出 `pyt`。遍历字符串 `\"python\"` 时，前三个字符依次拼入 `result`；遇到 `'h'` 时触发 `break` 跳出循环。在 Python 中，`for...else` 的 `else` 块只有在循环正常结束、未被 `break` 打断时才会执行。易错点：容易误以为 `else` 像 `finally` 一样总会执行。",
-    "animationId": null
+    "animationId": null,
+    "title": "break跳过循环else块"
   },
   {
     "id": "q005",
@@ -152,7 +156,8 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，输出 `(1, 2) (1, 2, 3, 4)`。变量 `ref` 和 `nums` 最初指向同一个元组；由于元组不可变，`nums += (3, 4)` 会拼接生成新元组并重新绑定给 `nums`，原元组不受影响，`ref` 仍指向 `(1, 2)`。易错点：容易误以为元组不可变会导致 `+=` 报错，或像列表那样影响别名。",
-    "animationId": null
+    "animationId": null,
+    "title": "不可变元组+=生成新对象"
   },
   {
     "id": "q006",
@@ -183,7 +188,8 @@
     ],
     "answer": "D",
     "explanation": "答案是 D，输出 `10 6`。函数默认参数在 `def` 定义时就已求值固定（`factor=5`），后续修改变量 `n = 10` 不会影响默认参数。调用 `calc(2)` 使用默认值计算得 10；调用 `calc(2, 3)` 传入实参 3 覆盖默认值计算得 6。易错点：容易误以为默认参数在调用时才动态查找变量。",
-    "animationId": null
+    "animationId": null,
+    "title": "默认参数在函数定义时求值"
   },
   {
     "id": "q007",
@@ -214,7 +220,8 @@
     ],
     "answer": "B",
     "explanation": "答案是 B，输出 `[5, 4, 3]`。切片 `nums[4:1:-1]` 中步长为 -1 表示反向提取，从索引 4 开始，到索引 1 结束。根据切片“含头不含尾”的规则，不包含索引 1 处的元素 2，因此依次取出索引 4、3、2 对应的 `[5, 4, 3]`。易错点：容易误以为结束索引包含在内，或误以为前大后小返回空列表。",
-    "animationId": null
+    "animationId": null,
+    "title": "切片[4:1:-1]反向提取"
   },
   {
     "id": "q008",
@@ -245,7 +252,8 @@
     ],
     "answer": "C",
     "explanation": "答案是 C，输出 `[1, 2, 3] [1, 2]`。`b = a` 只是引用赋值，两者指向同一个列表；而 `c = a[:]` 通过切片创建了一个新浅拷贝。调用 `b.append(3)` 修改原列表，`a` 随之变为 `[1, 2, 3]`，而拷贝 `c` 不受影响仍为 `[1, 2]`。易错点：容易混淆引用赋值与切片浅拷贝的区别。",
-    "animationId": null
+    "animationId": null,
+    "title": "引用赋值与切片浅拷贝"
   },
   {
     "id": "q009",
@@ -276,7 +284,8 @@
     ],
     "answer": "D",
     "explanation": "答案是 D，输出 `1 cherry`。在 Python 里 `1 == True == 1.0`，而且三者的哈希值相同，字典会把它们当成同一个键。所以第二、三次赋值都只是在覆盖同一个键的值：键仍然保留最早放进去的 `1`，值最后变成 `\"cherry\"`，字典长度是 1。易错点：字典判断“是不是同一个键”看的是哈希值和 `==`，不是看类型是否相同。",
-    "animationId": null
+    "animationId": null,
+    "title": "1与True视为字典同一键"
   },
   {
     "id": "q010",
@@ -307,7 +316,8 @@
     ],
     "answer": "B",
     "explanation": "答案是 B，输出 `18 20 2`。`dict.get(\"age\", 18)` 仅返回默认值 18，不会修改字典；而 `dict.setdefault(\"age\", 20)` 当键不存在时，除了返回默认值 20，还会将键值对写入字典，使字典长度变为 2。易错点：容易误以为 `get` 也会写入默认值，或混淆两者对字典的修改机制。",
-    "animationId": null
+    "animationId": null,
+    "title": "setdefault写入新键"
   },
   {
     "id": "q011",
@@ -338,7 +348,8 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，程序抛出 `UnboundLocalError`。函数体里有赋值语句 `x = 20`，Python 在编译这个函数时就把 `x` 认定为局部变量（不管赋值写在前还是写在后）。执行到 `print(x)` 时，这个局部变量还没有被赋值，于是报错，并不会退回去读取全局的 10。易错点：变量是不是局部的，是由函数里有没有赋值静态决定的；想改全局变量要先写 `global x`。",
-    "animationId": null
+    "animationId": null,
+    "title": "局部变量未赋值先使用"
   },
   {
     "id": "q012",
@@ -369,7 +380,8 @@
     ],
     "answer": "D",
     "explanation": "答案是 D，输出 `[2, 2, 2]`。这是闭包晚绑定现象。列表推导式中的 lambda 没有在定义时立即捕获 `i` 的当前值，而是保存了变量引用。推导式循环结束后 `i` 的最终值为 2；随后依次调用函数时，读取到的都是当前值 2。易错点：容易误以为闭包会在循环定义时立即固定当时的值而误选 A。",
-    "animationId": null
+    "animationId": null,
+    "title": "推导式中闭包变量晚绑定"
   },
   {
     "id": "q013",
@@ -400,7 +412,8 @@
     ],
     "answer": "C",
     "explanation": "答案是 C，输出 `['sword'] ['sword']`。类定义中的 `items = []` 是类属性，被所有实例共享。`p1.items.append(\"sword\")` 是就地修改共享的类属性列表，并未给 `p1` 创建独立实例属性，因此 `p2.items` 也能看到修改结果。易错点：容易将可变的类属性误认为是各实例独立拥有的属性而误选 A。",
-    "animationId": null
+    "animationId": null,
+    "title": "可变类属性被所有实例共享"
   },
   {
     "id": "q014",
@@ -431,7 +444,8 @@
     ],
     "answer": "B",
     "explanation": "答案是 B，输出 `hello B`。子类 `B` 继承父类 `A` 并重写了 `get_name`。调用继承来的 `obj.hello()` 时，方法内的 `self` 指向子类实例 `obj`；因此 `self.get_name()` 触发多态，调用子类重写的方法返回 `\"B\"`。易错点：容易误以为父类方法内只会调用父类自身定义的方法而误选 A。",
-    "animationId": null
+    "animationId": null,
+    "title": "父类方法调用子类重写方法"
   },
   {
     "id": "q015",
@@ -462,7 +476,8 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，输出 `try-else-finally`。在异常处理结构中：`try` 块正常执行未发生异常，跳过 `except`；`else` 块只有在 `try` 块没有发生异常时才会执行；而 `finally` 块无论是否有异常都必定执行。因此三者依次执行。易错点：容易忽略 `else` 块，误以为没有异常时只执行 `try` 和 `finally`。",
-    "animationId": null
+    "animationId": null,
+    "title": "try无异常时else执行"
   },
   {
     "id": "q016",
@@ -493,7 +508,8 @@
     ],
     "answer": "C",
     "explanation": "答案是 C，输出 `C`。`try` 里的 `return \"A\"` 会先把返回值暂存起来，但在函数真正退出之前，`finally` 一定会执行；`finally` 里又写了 `return \"C\"`，它会覆盖掉之前暂存的 \"A\"，所以最终返回 \"C\"。这里没有发生异常，`except` 分支根本不会执行。易错点：`try` 里的 `return` 不会跳过 `finally`。实际写代码时不要在 `finally` 里 `return`（会吞掉返回值和异常，Python 3.14 起还会给出 SyntaxWarning）。",
-    "animationId": null
+    "animationId": null,
+    "title": "finally覆盖函数返回值"
   },
   {
     "id": "q017",
@@ -524,7 +540,8 @@
     ],
     "answer": "C",
     "explanation": "答案是 C，程序抛出 `TypeError`。Python 的字符串是不可变类型，不支持通过下标赋值来修改其中的字符。执行 `s[0] = \"H\"` 时会立刻抛出 `TypeError`，程序不会执行到 `print`。如果想得到 `\"Hello\"`，需要用 `s = \"H\" + s[1:]` 拼接出一个新字符串。易错点：容易误以为字符串和列表一样可以按下标修改。",
-    "animationId": null
+    "animationId": null,
+    "title": "字符串不支持索引修改"
   },
   {
     "id": "q018",
@@ -555,7 +572,8 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，输出 `hello`。`str.replace()` 不会修改原字符串，而是返回一个新的字符串。这里调用了 `s.replace(\"l\", \"L\")` 却没有把返回值赋回给 `s`，所以 `s` 仍然是原来的 `\"hello\"`。正确写法是 `s = s.replace(\"l\", \"L\")`。易错点：容易误以为 `replace` 会就地修改字符串，忘记字符串是不可变的。",
-    "animationId": null
+    "animationId": null,
+    "title": "replace不修改原字符串"
   },
   {
     "id": "q019",
@@ -586,7 +604,8 @@
     ],
     "answer": "D",
     "explanation": "答案是 D，输出 `2 1`。内层循环每次在 `j == 1` 时执行 `break`，但 `break` 只会跳出内层循环，外层循环继续正常执行。外层循环走完三轮后 `i` 停在 2；每一轮内层循环都在 `j == 1` 时跳出，`j` 停在 1。循环结束后变量 `i` 和 `j` 仍然存在。易错点：容易误以为 `break` 会跳出所有层循环。",
-    "animationId": null
+    "animationId": null,
+    "title": "break仅跳出当前内层循环"
   },
   {
     "id": "q041",
@@ -617,7 +636,8 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，输出 `yth`。字符串切片 `[start:stop]` 遵循“左闭右开”原则，即包含起始下标 `start`，但不包含结束下标 `stop`。在代码中，`text = \"Python\"`，下标 0 对应 `'P'`、1 对应 `'y'`、2 对应 `'t'`、3 对应 `'h'`、4 对应 `'o'`。切片 `text[1:4]` 取出下标 1、2、3 对应的字符，拼接后得到 `\"yth\"`。易错点：容易误以为结束下标 4 对应的字符 `'o'` 也会被包含在内。",
-    "animationId": null
+    "animationId": null,
+    "title": "字符串切片左闭右开区间"
   },
   {
     "id": "q042",
@@ -648,7 +668,8 @@
     ],
     "answer": "B",
     "explanation": "答案是 B，输出 `135`。`range(start, stop, step)` 生成整数序列，起始值为 `start`，每次递增 `step`，且不包含 `stop`。这里 `range(1, 7, 2)` 生成的数字依次为 1、3、5（下一个数 7 已达到结束边界，不被包含）。循环中每次将数字转为字符串拼接到 `result` 末尾，最终得到 `\"135\"`。易错点：容易误认为 `range` 的结束值会被包含在内，或者忽略了第三个参数步长。",
-    "animationId": null
+    "animationId": null,
+    "title": "range指定步长与边界"
   },
   {
     "id": "q043",
@@ -679,7 +700,8 @@
     ],
     "answer": "C",
     "explanation": "答案是 C，输出 `-1`。在 Python 中，`str.find()` 方法用于在字符串中查找子串首次出现的位置。如果子串存在，返回其第一个字符对应的索引下标；如果子串不存在，则返回 `-1`，而不会抛出异常。在本题中，`\"w\"` 并不在 `\"hello\"` 中，因此返回 `-1`。易错点：容易将 `find()` 与 `index()` 混淆，`index()` 在找不到子串时会抛出 `ValueError`。",
-    "animationId": null
+    "animationId": null,
+    "title": "find找不到子串返回-1"
   },
   {
     "id": "q044",
@@ -710,7 +732,8 @@
     ],
     "answer": "D",
     "explanation": "答案是 D，输出 `cat-dog-bird`。`str.join(iterable)` 方法通过指定的分隔符将可迭代对象中的元素拼接为一个新字符串。分隔符只会插入在相邻的元素之间，序列的开头和结尾不会添加该分隔符。因此 `\"-\".join([\"cat\", \"dog\", \"bird\"])` 得到的结果是 `\"cat-dog-bird\"`。易错点：初学者常误以为每个元素后面都会跟着一个分隔符，导致误选末尾带短横线的选项。",
-    "animationId": null
+    "animationId": null,
+    "title": "join仅在元素间插入分隔符"
   },
   {
     "id": "q045",
@@ -741,6 +764,7 @@
     ],
     "answer": "A",
     "explanation": "答案是 A，输出 `1a2b3c`。`enumerate(iterable, start=0)` 用于同时获取可迭代对象的索引和元素，默认起始索引为 0。当传入 `start=1` 时，计数器从 1 开始递增，但遍历仍然从可迭代对象的第一个元素开始。因此三轮循环分别拿到 `(1, 'a')`、`(2, 'b')`、`(3, 'c')`，拼接后输出 `1a2b3c`。易错点：容易误以为默认从 0 开始而忽略 `start=1`，或者误以为 `start=1` 是从第二个元素开始切片。",
-    "animationId": null
+    "animationId": null,
+    "title": "enumerate指定起始值"
   }
 ]

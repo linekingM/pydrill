@@ -4,8 +4,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "theme_color": "#DFE0D2",
-  "background_color": "#DFE0D2",
+  "theme_color": "#fafaec",
+  "background_color": "#fafaec",
   "description": "PyDrill — 学 Python 的随身小练习本",
   "icons": [
     {
