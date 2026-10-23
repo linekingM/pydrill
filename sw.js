@@ -1,6 +1,6 @@
 /* PyDrill offline cache (A20). The VERSION placeholder is replaced at build time, so every deploy
    ships a byte-different sw.js; the browser then installs it and old caches are dropped. */
-const VERSION = '20261023044218';
+const VERSION = '__SW_VERSION__';
 const CACHE = `pydrill-${VERSION}`;
 const SCOPE = new URL(self.registration.scope);
 const SHELL = ['./', './index.html', './manifest.webmanifest', './question-bank/questions.json'];
